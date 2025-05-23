@@ -8,7 +8,7 @@
     <link rel="icon" href="images/icons/logo_sin_texto.png" type="image/png">
     <style>
         /* Estilos CSS */
-                :root {
+        :root {
             --primary-color: #2c3e50;
             /* Azul oscuro */
             --secondary-color: #3498db;
@@ -42,7 +42,8 @@
         header {
             background: var(--primary-color);
             color: var(--bg-color);
-            padding: 0.5rem 0; /* Reducido el padding vertical */
+            padding: 0.5rem 0;
+            /* Reducido el padding vertical */
             position: fixed;
             width: 100%;
             top: 0;
@@ -55,12 +56,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
+
         }
 
 
         .header-logo {
-            height: 100px; /* Reducida la altura del logo */
+            height: 100px;
+            /* Reducida la altura del logo */
             width: auto;
             /* Mantiene la proporción del logo */
         }
@@ -266,6 +268,33 @@
             margin: 5px 0;
         }
 
+        #video-promo .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* Proporción 16:9 (para videos widescreen) */
+            /* Para videos 4:3, usa 75% */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            /* Ancho máximo para el video, ajusta según necesites */
+            margin: 20px auto;
+            /* Centrar el contenedor del video */
+            border-radius: 8px;
+            /* Opcional: bordes redondeados */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            /* Opcional: sombra sutil */
+        }
+
+        #video-promo .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            /* Para que el iframe también tenga bordes redondeados si el contenedor los tiene */
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             header h1 {
@@ -318,6 +347,10 @@
                 width: 80px;
                 height: 80px;
             }
+
+            #video-promo .video-container {
+                max-width: 95%;
+            }
         }
     </style>
 </head>
@@ -326,7 +359,7 @@
 
     <header>
         <div class="container">
-            
+
             <img src="images/icons/logo_texto_derecha.png" alt="Logo Ergotensil" class="header-logo">
 
             <nav>
@@ -335,6 +368,7 @@
                     <li><a href="#problema">El Problema</a></li>
                     <li><a href="#solucion">Nuestra Solución</a></li>
                     <li><a href="#caracteristicas">Características</a></li>
+                    <li><a href="#video-promo">Video</a></li>
                     <li><a href="#equipo">Equipo</a></li>
                 </ul>
             </nav>
@@ -422,6 +456,22 @@
         </div>
     </section>
 
+    <section id="video-promo" class="section">
+        <div class="container">
+            <h3 class="section-title">Descubre InnovAcción en Acción</h3>
+            <div class="video-container">
+                <!-- PEGA AQUÍ EL CÓDIGO IFRAME DE YOUTUBE -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/26F3iZYbLNI?si=5SmIc8G845qpU5U1"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">
+                Un vistazo a cómo nuestros cubiertos adaptativos marcan la diferencia en el día a día.
+            </p>
+        </div>
+    </section>
+
     <section id="equipo" class="section" style="background-color: var(--light-gray);">
         <div class="container">
             <h3 class="section-title">Nuestro Equipo</h3>
@@ -440,8 +490,7 @@
                     <p>Juan Ignacio Ureta</p>
                 </div>
                 <div class="team-member">
-                    <img src="images/guille.jpg"
-                        alt="Foto de Guillermo Gutiérrez Caracuel">
+                    <img src="images/guille.jpg" alt="Foto de Guillermo Gutiérrez Caracuel">
                     <p>Guillermo Gutiérrez Caracuel</p>
                 </div>
                 <div class="team-member">
