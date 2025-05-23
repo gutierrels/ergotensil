@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergotensil - Cubiertos Adaptativos</title>
+    <link rel="icon" href="images/icons/logo_sin_texto.png" type="image/png">
+    <style>
+        /* Estilos CSS */
+                :root {
+            --primary-color: #2c3e50;
+            /* Azul oscuro */
+            --secondary-color: #3498db;
+            /* Azul más claro */
+            --accent-color: #c7a035;
+            /* Rojo/Naranja para acentos */
+            --light-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+            --text-color: #333;
+            --bg-color: #fff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: auto;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            padding: 0.5rem 0; /* Reducido el padding vertical */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+
+        .header-logo {
+            height: 100px; /* Reducida la altura del logo */
+            width: auto;
+            /* Mantiene la proporción del logo */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        header nav ul {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: var(--bg-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .section {
+            padding: 80px 0;
+            /* Increased padding to account for fixed header */
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        #hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://videos.openai.com/vg-assets/assets%2Ftask_01jvvq0srse2ts5m7w8en0akfx%2F1747908139_img_0.webp?st=2025-05-22T08%3A38%3A31Z&se=2025-05-28T09%3A38%3A31Z&sks=b&skt=2025-05-22T08%3A38%3A31Z&ske=2025-05-28T09%3A38%3A31Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=8Ab7GZ%2BbQ0hzbzxYc0pLPw1Kf%2Bz5HJR%2B595EY1qZrHg%3D&az=oaivgprodscus') no-repeat center 25%/cover;
+            /* Reemplaza 'https://via.placeholder.com/...' con una URL de tu imagen o déjalo así por ahora */
+            color: var(--bg-color);
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: baseline;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+            /* Space for fixed header */
+        }
+
+        #hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            max-width: max-content;
+            max-height: max-content;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #a0812a;
+            /* Darker accent */
+        }
+
+        #problema .content,
+        #solucion .content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        #problema img,
+        #solucion img {
+            max-width: 40%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para las características interactivas */
+        #caracteristicas .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .feature-item h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .feature-item.active h4 {
+            color: white;
+        }
+
+        #feature-description {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--light-gray);
+            margin-top: 20px;
+            min-height: 100px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        #feature-description h5 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        #equipo .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .team-member {
+            background: var(--light-gray);
+            padding: 20px 15px;
+            /* Aumentado padding vertical */
+            border-radius: 8px;
+            text-align: center;
+            /* Asegurar que el contenido esté centrado */
+        }
+
+        .team-member img {
+            width: 100px;
+            /* Tamaño de la imagen */
+            height: 100px;
+            /* Tamaño de la imagen */
+            border-radius: 50%;
+            /* Hace la imagen circular */
+            object-fit: cover;
+            /* Asegura que la imagen cubra el espacio sin distorsionarse */
+            margin-bottom: 15px;
+            /* Espacio entre la imagen y el nombre */
+            display: block;
+            /* Para que el margin auto funcione */
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member p {
+            font-size: 0.9rem;
+            margin: 5px 0 0 0;
+            font-weight: bold;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header nav {
+                margin-top: 10px;
+            }
+
+            header nav ul li {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            header .container {
+                flex-direction: column;
+            }
+
+            #hero h2 {
+                font-size: 2rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            #problema .content,
+            #solucion .content {
+                flex-direction: column;
+            }
+
+            #problema img,
+            #solucion img {
+                max-width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            #equipo .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                /* Ajuste para móviles */
+            }
+
+            .team-member img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            
+            <img src="images/icons/logo_texto_derecha.png" alt="Logo Ergotensil" class="header-logo">
+
+            <nav>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#problema">El Problema</a></li>
+                    <li><a href="#solucion">Nuestra Solución</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                    <li><a href="#equipo">Equipo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Redefiniendo la Autonomía en la Mesa</h2>
+            <p>Presentamos un innovador set de cubiertos ergonómicos diseñados para devolver la independencia y dignidad
+                a personas con movilidad reducida.</p>
+            <a href="#solucion" class="btn">Descubre Más</a>
+        </div>
+    </section>
+
+    <section id="problema" class="section">
+        <div class="container">
+            <h3 class="section-title">El Desafío Diario</h3>
+            <div class="content">
+                <img src="https://videos.openai.com/vg-assets/assets%2Ftask_01jvvqhwsde9xapq7ghs43kqey%2F1747908684_img_2.webp?st=2025-05-22T08%3A37%3A14Z&se=2025-05-28T09%3A37%3A14Z&sks=b&skt=2025-05-22T08%3A37%3A14Z&ske=2025-05-28T09%3A37%3A14Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Tdw88K0bRQzczBwaRZgzmeG4k5GIdcZ0RUEJGG%2FDQPQ%3D&az=oaivgprodscus"
+                    alt="Persona con dificultad para usar cubiertos">
+                <div>
+                    <p>Millones de personas enfrentan dificultades diarias al usar utensilios tradicionales para comer.
+                        Desde enfermedades degenerativas como Parkinson o esclerosis múltiple, hasta adultos mayores con
+                        motricidad fina deteriorada o lesiones temporales.</p>
+                    <p>Esta situación no solo genera frustración y dependencia, sino que también puede afectar
+                        negativamente la autoestima y la calidad de vida, convirtiendo un acto tan fundamental como
+                        comer en una fuente de estrés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucion" class="section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h3 class="section-title">Ergotensil: La Solución</h3>
+            <div class="content">
+                <div>
+                    <p>Hemos desarrollado un set de cubiertos ergonómicos que combinan funcionalidad, diseño y
+                        personalización para facilitar el acto de comer de forma autónoma, segura y cómoda.</p>
+                    <p>Nuestro diseño modular, fabricado mediante impresión 3D local, permite una adaptación precisa a
+                        las necesidades de cada usuario, promoviendo la independencia y mejorando la experiencia en cada
+                        comida. No son solo cubiertos, son una herramienta para la dignidad.</p>
+                    <p><strong>Principales innovaciones:</strong></p>
+                    <ul>
+                        <li>Botón de giro integrado para ajustar el ángulo del cubierto.</li>
+                        <li>Pesos equilibrados en el mango para mayor estabilidad.</li>
+                        <li>Diseño moderno y elegante, no estigmatizante.</li>
+                        <li>Producción local y personalizable mediante impresión 3D.</li>
+                    </ul>
+                </div>
+                <img src="images/set.jpg" alt="Set de cubiertos adaptativos">
+                <!-- IMPORTANTE: Reemplaza la URL de arriba con una imagen de tus cubiertos. La imagen de la página 16 del PDF sería ideal aquí -->
+            </div>
+        </div>
+    </section>
+
+    <section id="caracteristicas" class="section">
+        <div class="container">
+            <h3 class="section-title">Características Clave</h3>
+            <div class="features-grid">
+                <div class="feature-item" data-feature="mango">
+                    <h4>Mango Ergonómico Texturizado</h4>
+                </div>
+                <div class="feature-item" data-feature="peso">
+                    <h4>Módulo de Ajuste de Peso</h4>
+                </div>
+                <div class="feature-item" data-feature="angulo">
+                    <h4>Módulo de Ángulo Ajustable</h4>
+                </div>
+                <div class="feature-item" data-feature="cabezal">
+                    <h4>Cabezal Intercambiable</h4>
+                </div>
+                <div class="feature-item" data-feature="liberacion">
+                    <h4>Botón de Liberación Rápida</h4>
+                </div>
+                <div class="feature-item" data-feature="materiales">
+                    <h4>Materiales y Acabados</h4>
+                </div>
+            </div>
+            <div id="feature-description">
+                <h5>Selecciona una característica para ver más detalles.</h5>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipo" class="section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h3 class="section-title">Nuestro Equipo</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/pedro.jpg" alt="Foto de Pedro Bernat Galushko">
+                    <p>Pedro Bernat Galushko</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQESWk7NN9CWqQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1721037456530?e=1753315200&v=beta&t=gZsAKHHgzu3yi8iWZ95q4nkkH8FNDMYdeydzZhFZT1E"
+                        alt="Foto de Marina Aparicio Garrigós">
+                    <p>Marina Aparicio Garrigós</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/juan.jpg" alt="Foto de Juan Ignacio Ureta">
+                    <p>Juan Ignacio Ureta</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQE0P0X1a2mSSg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1701171742658?e=1753315200&v=beta&t=UGAwVkMH8hONBh20-tBmyjX5ctQOaOMckWfrAvzS6h8"
+                        alt="Foto de Guillermo Gutiérrez Caracuel">
+                    <p>Guillermo Gutiérrez Caracuel</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/rebeca.jpg" alt="Foto de Rebeca Domínguez Del Rosario">
+                    <p>Rebeca Domínguez Del Rosario</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/victor.jpg" alt="Foto de Víctor Sánchez Giménez">
+                    <p>Víctor Sánchez Giménez</p>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top: 30px; font-style: italic;">Estudiantes de 3º curso de Ingeniería
+                Biomédica - Innovar y Emprender</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024-2025 Ergotensil. Todos los derechos reservados.</p>
+            <p>Somos los mejores.</p>
+            <p>Universidad Politécnica de Valencia</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para interactividad
+        document.addEventListener('DOMContentLoaded', function () {
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Calculate position considering the fixed header
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Interactive features section
+            const featureItems = document.querySelectorAll('.feature-item');
+            const featureDescriptionBox = document.getElementById('feature-description');
+            const featureDescriptionTitle = featureDescriptionBox.querySelector('h5');
+            const featureDescriptionText = featureDescriptionBox.querySelector('p');
+
+            const featureDetails = {
+                mango: {
+                    title: "Mango Ergonómico con Agarre Texturizado",
+                    text: "Diseñado para facilitar el agarre y evitar que los cubiertos se deslicen, incluso con manos húmedas o poca fuerza. Su textura antideslizante y superficie de goma o silicona proporcionan comodidad y seguridad."
+                },
+                peso: {
+                    title: "Módulo de Ajuste de Peso",
+                    text: "Permite añadir o quitar peso en la parte inferior del mango para adaptarse a usuarios con temblores o problemas de coordinación. Un mayor peso puede estabilizar el movimiento, utilizando anillos desmontables de acero inoxidable o plomo encapsulado."
+                },
+                angulo: {
+                    title: "Módulo de Ángulo Ajustable",
+                    text: "Modifica el ángulo del utensilio (en la parte superior del mango) para adaptarse a distintas posiciones de la muñeca, facilitando el acceso a la comida sin forzar el brazo. Se ajusta por presión o giro."
+                },
+                cabezal: {
+                    title: "Cabezal del Utensilio Intercambiable",
+                    text: "Permite intercambiar cuchillo, tenedor y cuchara sin necesidad de adquirir un set completo nuevo, manteniendo el mango adaptado. Fabricados en acero inoxidable para fácil limpieza y con acople seguro."
+                },
+                liberacion: {
+                    title: "Botón de Liberación Rápida",
+                    text: "Facilita el desmontaje del mango para cambiar el tipo de utensilio o limpiar el componente de agarre. Es un botón grande y fácil de presionar, pensado para personas con movilidad reducida."
+                },
+                materiales: {
+                    title: "Materiales y Acabados de Alta Calidad",
+                    text: "Mangos fabricados en silicona de grado médico o caucho termoplástico. Superficie antibacteriana para prevenir infecciones y un diseño moderno que evita la apariencia clínica o estigmatizante, asegurando durabilidad y fácil limpieza."
+                }
+            };
+
+            featureItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    // Remove active class from all items
+                    featureItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+
+                    const featureKey = this.dataset.feature;
+                    if (featureDetails[featureKey]) {
+                        featureDescriptionTitle.textContent = featureDetails[featureKey].title;
+                        featureDescriptionText.textContent = featureDetails[featureKey].text;
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
